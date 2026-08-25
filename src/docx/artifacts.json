@@ -1,0 +1,29 @@
+{
+ "items": [
+  {
+   "name": "Sealed clay contract",
+   "desc": "Mesopotamia. A cylinder seal rolled across a field-sale tablet, binding a named party to a transaction.",
+   "src": "Metropolitan Museum of Art, CC0",
+   "fail": "Forged by anyone holding the seal"
+  },
+  {
+   "name": "Photographic passport",
+   "desc": "1922. The League of Nations standard of 1920 fixed the format the world still uses: a book, a photograph, an issuing authority.",
+   "src": "Public domain",
+   "fail": "Only as good as the issuing state"
+  },
+  {
+   "name": "Nansen passport",
+   "desc": "1929. Identity for people no state would vouch for, honoured only because other states agreed to accept it.",
+   "src": "Wikimedia Commons, CC0",
+   "fail": "Worth exactly what verifiers granted it"
+  },
+  {
+   "name": "Social Security number",
+   "desc": "From 1935. An identifier issued for one purpose that became the de facto national identity number for many.",
+   "src": "US National Archives, public domain",
+   "fail": "Borrowed as an identifier, then used as a secret"
+  }
+ ],
+ "cap": "Four identity systems separated by nearly four thousand years, and the red line under each is its characteristic failure. Between them they cover the whole ancient list: forgery, dependence on an issuer, dependence on other parties agreeing to honour the thing, and an identifier quietly acquiring uses nobody authorized. Not one is a failure of the artifact. The seal is well made, the passport is well printed, the card is unambiguous. Everything that goes wrong is institutional, and every item on that list is still live."
+}

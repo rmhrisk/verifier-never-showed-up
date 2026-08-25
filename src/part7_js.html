@@ -1,0 +1,395 @@
+<script>
+/* ============ TAXONOMY ============ */
+const FAM = {
+  demand:{label:"Demand side", color:"#B4472E"},
+  economics:{label:"Cost and access", color:"#8A6D1F"},
+  institutional:{label:"Institutional", color:"#3D5A80"},
+  temporal:{label:"Over time", color:"#4A6B4F"}
+};
+const TAG = {
+  noverifier:{f:"demand", label:"No anchor tenant",
+    d:"Credentials were issued and no verifier was obliged to accept them.",
+    fix:"Structural. An anchor tenant must exist before architecture is settled."},
+  integration:{f:"demand", label:"Verifier integration cost",
+    d:"Accepting cost the verifier more than accepting was worth to it.",
+    fix:"Execution. Reduce the burden, or increase what acceptance returns."},
+  liability:{f:"demand", label:"Liability floor",
+    d:"Regulation left the verifier responsible for its own determination, so a credential could not reduce its risk or work enough to be worth adopting.",
+    fix:"Structural. Change the regulation or change the use case."},
+  misaligned:{f:"economics", label:"Cost/benefit misaligned",
+    d:"The holder or issuer bore the cost; the verifier collected the benefit.",
+    fix:"Execution, usually politically hard. Move the cost to the beneficiary."},
+  friction:{f:"economics", label:"Holder friction",
+    d:"Enrollment or use cost the holder more than what the credential unlocked was worth.",
+    fix:"Execution. Remove steps, or unlock more."},
+  exclusion:{f:"economics", label:"Exclusion",
+    d:"Evidence, device, capacity or delegation requirements denied the service to part of the population, including where no lawful representative could act on the holder's behalf.",
+    fix:"Execution, and a design constraint from the start rather than a later remediation."},
+  political:{f:"institutional", label:"Political constraint",
+    d:"Architecture was chosen for political acceptability, or the program was stopped for political reasons.",
+    fix:"Structural. Not reachable by engineering."},
+  coordination:{f:"institutional", label:"Coordination failure",
+    d:"Multiple independent parties had to converge and nobody could make them.",
+    fix:"Structural unless a mandate or an anchor tenant supplies the forcing function."},
+  enforcement:{f:"institutional", label:"Framework without enforcement",
+    d:"A specification existed; conformance testing, certification and consequences did not.",
+    fix:"Execution, and the cheapest of these to fund early."},
+  governance:{f:"temporal", label:"Governance underfunded",
+    d:"Security review, supplier management, protocol migration and threat-model refresh stopped at launch.",
+    fix:"Execution. Available at any time, rarely taken."},
+  lockin:{f:"temporal", label:"Locked-in architecture",
+    d:"Critical mass made an architectural mistake effectively unfixable.",
+    fix:"Structural once it has happened. Only avoidable in advance."}
+};
+const KIND = {
+  national:{label:"National scheme", plural:"national schemes", blurb:"A state credential for the whole population."},
+  govlogin:{label:"Public-service login", plural:"public-service logins", blurb:"Access to government services, not a foundational identity."},
+  closed:{label:"Closed-loop", plural:"closed-loop credentials", blurb:"An organization issuing to its own people, for its own doors."},
+  consortium:{label:"Private consortium", plural:"private consortium schemes", blurb:"Banks and telcos building for obligations they already carried."},
+  tech:{label:"Protocol or product", plural:"protocols and products", blurb:"Technology offered to whoever will adopt it."},
+  framework:{label:"Framework or rule", plural:"frameworks and rules", blurb:"Law or policy creating status without creating demand."}
+};
+const OUTCOME = {
+  working:{label:"Working",   color:"#8E9299"},
+  failed: {label:"Failed",    color:"#B4472E"},
+  mixed:  {label:"Mixed",     color:"#8A6D1F"},
+  pending:{label:"In flight", color:"#C3BEB3"},
+  uncertain:{label:"Uncertain", color:"#A9A498"}
+};
+
+/* t: [tag, weight]. weight 2 = primary cause, 1 = contributing */
+const RECORD = [
+ {p:"Digital Signature Directive 1999/93/EC", k:"framework", w:"European Union", y:1999, m:0, o:"failed",
+  t:[["noverifier",2],["enforcement",2],["coordination",1]],
+  n:"Legal recognition for e-signatures, and a limited mutual recognition for qualified ones, without the operational interoperability that would make either useful across a border. Categories set, implementation started, the hard questions left to standards work and national discretion. Diverged accordingly."},
+ {p:"Federal Bridge / FPKI", k:"tech", w:"United States", y:2000, m:0, o:"working",
+  t:[["integration",1]],
+  n:"Routinely cited as the PKI era's emblematic failure, which the record does not support. Its stated scope was interoperability between federal agency PKIs and the entity domains that transact with them, and within that scope it worked: commercial bridges cross-certified because their members needed to do business with agencies requiring the credentials, CertiPath for aerospace and defense supply chains and SAFE-BioPharma for pharmaceutical exchange with FDA and DoD. Cross-certification is expensive, and it never reached commercial-to-commercial use where no agency was a party. That was never the goal."},
+ {p:"CAC", k:"closed", w:"United States (DoD)", y:2000, m:1, o:"working",
+  t:[],
+  n:"Four million-plus personnel. Bounded scope, certain enforcement, and the beneficiary paying. Generalised no further, and was never meant to."},
+ {p:"Estonia eID", k:"national", w:"Estonia", y:2002, m:1, o:"working",
+  t:[["governance",1]],
+  n:"The sequencing exemplar: embedded in tax, voting, prescriptions and business registration from day one, and it worked for that reason. What it did not do was model failure of the credential itself at population scale. Roughly 120,000 faulty cards in 2011, then a 2017 chip vulnerability affecting about 760,000 and a national freeze. The response was competent and it was improvised, because mass revocation and recovery had not been designed as a normal operating condition."},
+ {p:"Liberty Alliance / SAML", k:"tech", w:"Industry consortium", y:2002, m:0, o:"failed",
+  t:[["integration",2],["coordination",1]],
+  n:"Survives in enterprise federation. Never reached the consumer web it was aimed at, because the integration cost only made sense where an IT department was already paying it."},
+ {p:"Sweden BankID", k:"consortium", w:"Sweden", y:2003, m:0, o:"working",
+  t:[],
+  n:"Bank-led, resting on identity obligations and fraud exposure the banks already carried. Institutional trust reused rather than manufactured."},
+ {p:"Singpass", k:"national", w:"Singapore", y:2003, m:0, o:"working",
+  t:[],
+  n:"Government-led with genuine utility from the outset, then iterated continuously, including rapid pandemic adaptation. The funded operating model is the differentiator."},
+ {p:"PIV (HSPD-12)", k:"closed", w:"United States", y:2004, m:1, o:"working",
+  t:[["integration",1]],
+  n:"Worked inside the mandate for the same reasons as CAC. Adoption outside the federal population never happened; the integration burden had no corresponding payoff."},
+ {p:"Norway BankID", k:"consortium", w:"Norway", y:2004, m:0, o:"working",
+  t:[],
+  n:"Same mechanism as Sweden. The verifier arrived with its own motive and funded the system it wanted."},
+ {p:"DigiD", k:"govlogin", w:"Netherlands", y:2005, m:0, o:"working",
+  t:[],
+  n:"Government login for public services, run by the state and accepted across it. The verifier and the issuer are the same institution, so no persuasion across a boundary was needed."},
+ {p:"iDIN", k:"consortium", w:"Netherlands", y:2016, m:0, o:"working",
+  t:[],
+  n:"Bank-backed identity for private-sector use, built by the parties already carrying know-your-customer obligations. Offered alongside DigiD in a government pilot as an alternative a user could choose, not integrated into it. Acquired by itsme in December 2025."},
+ {p:"E-passports (ICAO Doc 9303)", k:"national", w:"150+ countries", y:2005, m:1, o:"working",
+  t:[["governance",2],["enforcement",2],["lockin",1],["coordination",1]],
+  n:"The most widely deployed identity credential in history, and the clearest case of a sequence run backwards. Chips went to hundreds of millions of people before the directory participation, validation infrastructure and reader estates that made them worth checking existed, and the early workaround was to relax certificate checking. The interoperability did arrive, roughly two decades later, which is the finding rather than the exoneration: the system spent twenty years below its promise and no year of that appeared on anyone's report."},
+ {p:"UK National ID Cards scheme", k:"national", w:"United Kingdom", y:2006, m:1, o:"failed",
+  t:[["political",2],["noverifier",1]],
+  n:"The Identity Cards Act created a card and a national register in 2006, and a limited rollout issued cards before the coalition government abolished both in 2010. The political reversal, not a technical one, took a central register off the table for everything that followed, which is the constraint Verify was designed around."},
+ {p:"InfoCard / CardSpace", k:"tech", w:"Microsoft", y:2006, m:0, o:"failed",
+  t:[["integration",2],["noverifier",2],["friction",1]],
+  n:"Architecturally correct and still is. Windows-dependent, complex to integrate, and overtaken by a protocol that asked developers for far less and gave verifiers more."},
+ {p:"OAuth and OpenID Connect", k:"tech", w:"Industry", y:2007, m:0, o:"working",
+  t:[["enforcement",1],["lockin",1]],
+  n:"Won on integration cost by handing verifiers something they already wanted. Fragmented in practice, with dominant implementations becoming the de facto specification."},
+ {p:"nPA national ID card", k:"national", w:"Germany", y:2010, m:0, o:"failed",
+  t:[["misaligned",2],["friction",2],["integration",1],["noverifier",1]],
+  n:"Sound cryptography, and the record's cleanest natural experiment. Automatic activation from 2017 took the issuance number past 97 per cent of cards in circulation; actual use went from just under ten per cent in 2022 to 22 per cent in 2024. The issuer controlled one number and not the other."},
+ {p:"Aadhaar", k:"national", w:"India", y:2010, m:1, o:"working",
+  t:[["political",1],["exclusion",1],["governance",1]],
+  n:"The largest deployment ever attempted, with real effect on benefit delivery and financial inclusion. Purpose limitation, exclusion and oversight remained unresolved until the courts intervened in 2018."},
+ {p:"GIDS smart card specification", k:"tech", w:"Microsoft", y:2010, m:0, o:"failed",
+  t:[["noverifier",2]],
+  n:"The counterexample to the distribution argument, and the reason it needs qualifying. A class minidriver shipped inbox with every Windows since 7 SP1, so a GIDS card works with no middleware at all, and it was designed for remote deployment, meaning credentials provisioned to a device rather than issued across a counter. It still went essentially nowhere outside Microsoft's own stack, where it backed Windows virtual smart cards. Distribution was solved. No verifier outside that stack ever needed a GIDS card."},
+ {p:"NSTIC", k:"govlogin", w:"United States", y:2011, m:0, o:"failed",
+  t:[["noverifier",2],["coordination",2],["misaligned",1]],
+  n:"Funded pilots, convened participants and waited for a market to form, which is enabling an ecosystem rather than building one. No large service required the credentials, so no provider had a reason to invest, and the chicken-and-egg problem was never broken."},
+ {p:"My Number", k:"national", w:"Japan", y:2015, m:1, o:"working",
+  t:[["governance",2],["coordination",1],["political",1]],
+  n:"The mirror image of the nPA. Japan moved the issuance number with cash incentives and by folding the health insurance card into it, rather than by changing a default. Forcing acceptance then surfaced what low usage had concealed: 7,312 cases of insurance records linked to the wrong individual, wrong residence certificates printed at convenience stores, a nationwide record-by-record recheck devolved to municipalities, and the insurance card phase-out delayed a year."},
+ {p:"GOV.UK Verify", k:"govlogin", w:"United Kingdom", y:2016, m:0, o:"failed",
+  t:[["political",2],["coordination",2],["noverifier",2],["friction",2],["exclusion",1],["enforcement",1],["misaligned",1]],
+  n:"Seven modes, in causal order. A political constraint (no central database) forced a federated design; federation across commercial providers created a coordination problem; differing evidence rules made the holder experience unpredictable, producing a 48% single-attempt verification success rate (a measure the NAO cautioned excluded people who abandoned before provider confirmation) and demographic exclusion; certification was to a standard rather than to a working transaction; providers were paid per verification at volumes that never arrived; and departments had alternatives with no mandate to switch. 19 of a forecast 46, 48% verification success against 90% expected."},
+ {p:"SPID, and the CIE succession", k:"national", w:"Italy", y:2016, m:0, o:"working",
+  t:[["lockin",1],["political",1]],
+  n:"SPID reached critical mass through pandemic-era mandates, and a state-controlled alternative in CIE has existed alongside it throughout. The interest here is structural rather than current-affairs: whichever way the policy lands, tens of millions of holders and a relying-party estate already depend on the federated architecture, which makes this the one case in the record where lock-in can be watched rather than reconstructed."},
+ {p:"itsme", k:"consortium", w:"Belgium", y:2017, m:0, o:"working",
+  t:[],
+  n:"A bank and telco consortium, built by the parties already carrying AML, PSD2 and SIM-registration obligations. Around 7.5 million users and over 80 per cent of Belgian adults, with more than a million actions a day, and no government mandate anywhere in the story: it grew because it was the quickest way into banking. The institutional-trust pattern outside Scandinavia, which is the case that makes the cultural explanation hard to sustain. Acquired iDIN in December 2025 and is expanding across the EU ahead of EUDI."},
+ {p:"Login.gov", k:"govlogin", w:"United States", y:2017, m:0, o:"working",
+  t:[["exclusion",1]],
+  n:"Deliberately unambitious scope, usability chosen over architecture. Works modestly where the grand designs did not."},
+ {p:"FIDO2 / passkeys", k:"tech", w:"Industry + platforms", y:2018, m:0, o:"working",
+  t:[],
+  n:"Not identity proofing, and succeeding anyway. Driven by an immediate relying-party benefit of no password database and fewer recovery tickets, plus platform distribution, with no mandate anywhere."},
+ {p:"Bank KYC via verifiable credentials", k:"framework", w:"Multiple", y:2019, m:0, o:"failed",
+  t:[["liability",2],["integration",1]],
+  n:"A recurring proposal meeting a recurring wall. A regulated firm may use a certified verification service for parts of customer due diligence, but it remains responsible for the adequacy of the overall determination, so the credential removes less duplicated work than the pitch assumes."},
+ {p:"MOSIP deployments", k:"national", w:"Philippines, Ethiopia, Morocco, others", y:2020, m:0, o:"pending",
+  t:[["exclusion",1],["governance",1]],
+  n:"Open-source foundational identity for states without the capacity to build their own, aimed squarely at the exclusion problem. The standing risk is a platform adopted faster than the governance capacity to operate it."},
+ {p:"mDL / ISO 18013-5 + TSA", k:"national", w:"United States", y:2021, m:0, o:"working",
+  t:[["enforcement",1],["governance",1]],
+  n:"TSA acceptance is the clearest anchor tenant in the modern record, an obligation predating the credential and made cheaper by it. Verifier implementations and reader estates are the exposure."},
+ {p:"Entra Verified ID", k:"tech", w:"Microsoft", y:2022, m:0, o:"uncertain",
+  t:[["noverifier",2],["integration",1],["coordination",1]],
+  n:"An active product with continuing investment and several first-party uses, including generally available account recovery from 2026, but without public adoption data sufficient to compare it with Microsoft's established federation products, and wallet interoperability has not visibly materialised at scale. Outcome not classifiable from the public record."},
+ {p:"GOV.UK One Login", k:"govlogin", w:"United Kingdom", y:2023, m:1, o:"working",
+  t:[["governance",2],["exclusion",1],["political",1]],
+  n:"Built to learn from Verify, and exposed to a different failure. Removed from the DIATF register for roughly nine months in 2025 after a supplier allowed its own certification to lapse, with no finding against One Login's own security or approach. The service kept operating and expanding throughout, past 200 services and 15 million proven identities. A supplier-governance failure inside a working program rather than a failed one."},
+ {p:"Utah mobile identity (SB260)", k:"national", w:"Utah", y:2023, m:0, o:"pending",
+  t:[["noverifier",1],["coordination",1]],
+  n:"State-endorsed rather than state-controlled, with KERI-based rotation and recovery, offline verifiability, and delegation and guardianship treated as design requirements rather than later remediation. Its exposure is the one this record punishes most: no verifier has yet been named whose need to check identity predates the program, and a multi-state consortium is the shape section 13 describes as many independent parties needing to converge with nothing obliging them to. KERI is also a young stack to bet a statutory framework on. No outcome to classify yet."},
+ {p:"eIDAS 2.0 / EUDI Wallet", k:"framework", w:"European Union", y:2024, m:1, o:"pending",
+  t:[],
+  n:"Real technical unification across ISO 18013-5, W3C verifiable credentials, SD-JWT and mdoc, plus a mutual recognition obligation with legal force. Also a framework permitting variable national implementation. Exposed to framework-without-enforcement, coordination failure and the liability floor. No outcome to classify yet."}
+];
+
+/* ============ RENDER THE RECORD ============ */
+const rowsEl=document.getElementById("record-rows");
+const barEl=document.getElementById("distbar");
+const legEl=document.getElementById("distlegend");
+const nEl=document.getElementById("dist-n");
+const footEl=document.getElementById("record-foot");
+let filter="national";
+
+function tagChips(r){
+  const out = r.o ? '<span class="chip out-'+r.o+'">'+OUTCOME[r.o].label+'</span>' : '';
+  const tags = r.t.map(([k,wt])=>
+    '<span class="chip fam-'+TAG[k].f+(wt===1?' contrib':'')+'" title="'+TAG[k].d+'">'+
+    TAG[k].label+'</span>').join(" ");
+  return [out,tags].filter(Boolean).join(" ");
+}
+function visible(){
+  if(KIND[filter]) return RECORD.filter(r=>r.k===filter);
+  if(filter==="all") return RECORD;
+  if(filter==="mandated") return RECORD.filter(r=>r.m===1);
+  if(filter==="working") return RECORD.filter(r=>r.o==="working");
+  if(FAM[filter]) return RECORD.filter(r=>r.t.some(([k])=>TAG[k].f===filter));
+  return RECORD.filter(r=>r.t.some(([k])=>k===filter));
+}
+function render(){
+  const rows=visible().slice().sort((a,b)=>a.y-b.y);
+  rowsEl.innerHTML=rows.map(r=>
+    '<tr><td class="prog">'+r.p+'</td><td>'+r.w+'</td><td class="yr">'+r.y+'</td>'+
+    '<td class="tags">'+tagChips(r)+'</td><td class="note">'+r.n+'</td></tr>').join("");
+  nEl.textContent=rows.length;
+  const kh=document.getElementById("record-scope");
+  if(kh) kh.textContent = KIND[filter] ? KIND[filter].plural
+        : (filter==="all" ? "programs, all kinds" : "programs under the current filter");
+
+  const famCount={}; Object.keys(FAM).forEach(k=>famCount[k]=0);
+  const tagCount={}; Object.keys(TAG).forEach(k=>tagCount[k]=0);
+  let incid=0;
+  rows.forEach(r=>r.t.forEach(([k])=>{famCount[TAG[k].f]++;tagCount[k]++;incid++}));
+  const tot=incid||1;
+  barEl.innerHTML=Object.keys(FAM).filter(k=>famCount[k]>0).map(k=>
+    '<span style="flex-grow:'+famCount[k]+';background:'+FAM[k].color+'" title="'+
+    FAM[k].label+': '+famCount[k]+' tags">'+
+    (famCount[k]/tot>0.08?FAM[k].label+' '+famCount[k]:famCount[k])+'</span>').join("")
+    || '<span style="flex-grow:1;background:#DEDED7"></span>';
+  legEl.innerHTML=Object.keys(TAG).sort((a,b)=>tagCount[b]-tagCount[a]).map(k=>
+    '<span'+(tagCount[k]?'':' class="zero"')+'><i class="swatch" style="background:'+
+    FAM[TAG[k].f].color+'"></i>'+TAG[k].label+' <b>'+tagCount[k]+'</b></span>').join("");
+
+  if(typeof rexp!=="undefined" && rexp && !rbody.classList.contains("expanded"))
+    rexp.textContent="Show all "+rows.length+" rows";
+  if(typeof syncFade==="function") requestAnimationFrame(syncFade);
+  const decided=rows.filter(r=>r.o!=="pending"&&r.o!=="uncertain").length;
+  const worked=rows.filter(r=>r.o==="working").length;
+  const failed=rows.filter(r=>r.o==="failed");
+  const perFail=failed.length? (failed.reduce((a,r)=>a+r.t.length,0)/failed.length).toFixed(1):"0";
+  footEl.innerHTML='Solid chips are primary causes; outlined chips are contributing. '+
+    'The bar counts <b>'+incid+'</b> tag incidences rather than programs, and failed programs carry <b>'+
+    perFail+'</b> modes each on average, because they do not fail one way at a time. '+
+    'Of <b>'+decided+'</b> programs where an outcome could be identified, <b>'+worked+'</b> worked.';
+}
+/* scroll affordance: fade out at the end, and an escape from the scroll box */
+const rbody=document.getElementById("record-body");
+const rfade=document.getElementById("record-fade");
+const rexp=document.getElementById("record-expand");
+const rmore=document.getElementById("record-more-text");
+function syncFade(){
+  if(!rbody||!rfade) return;
+  const more = rbody.scrollHeight - rbody.clientHeight - rbody.scrollTop > 8;
+  rfade.classList.toggle("hidden", !more || rbody.classList.contains("expanded"));
+}
+if(rbody){
+  rbody.addEventListener("scroll", syncFade, {passive:true});
+  window.addEventListener("resize", syncFade);
+}
+if(rexp){
+  rexp.addEventListener("click", ()=>{
+    const open = rbody.classList.toggle("expanded");
+    rexp.setAttribute("aria-expanded", String(open));
+    const n = document.getElementById("record-rows").children.length;
+    rexp.textContent = open ? "Collapse the table" : "Show all "+n+" rows";
+    rmore.textContent = open ? "Showing every row." : "Scroll the table, or open it in full.";
+    if(!open) rbody.scrollTop = 0;
+    syncFade();
+  });
+}
+
+document.getElementById("filters").addEventListener("click",e=>{
+  const b=e.target.closest("button"); if(!b) return;
+  filter=b.dataset.f;
+  [...e.currentTarget.querySelectorAll("button")].forEach(x=>
+    x.setAttribute("aria-pressed",String(x===b)));
+  render();
+});
+render();
+
+/* ============ SCORECARD ============ */
+/* The questions are static HTML, generated at build time by gen_diagnostic.py.
+   This only attaches behavior, so the section exists with JS disabled and the
+   markup is the single source of truth. */
+const scq=document.getElementById("sc-questions");
+const SCQ=[...scq.querySelectorAll(".sc-q")].map(el=>({c:el.dataset.mode}));
+const scState=new Array(SCQ.length).fill(null);
+scq.addEventListener("click",e=>{
+  const b=e.target.closest(".sc-opt"); if(!b) return;
+  const i=+b.dataset.q; scState[i]=+b.dataset.v;
+  [...scq.querySelectorAll('.sc-opt[data-q="'+i+'"]')].forEach(x=>
+    x.setAttribute("aria-pressed",String(x===b)));
+  scoreCard();
+});
+const STRUCTURAL=["noverifier","liability","political","coordination","lockin"];
+function scoreCard(){
+  const answered=scState.filter(v=>v!==null).length;
+  const head=document.querySelector("#sc-result strong");
+  const sum=document.getElementById("sc-summary");
+  const flags=document.getElementById("sc-flags");
+  if(answered<SCQ.length){
+    head.textContent="Answered "+answered+" of "+SCQ.length+".";
+    sum.textContent=" The result names the failure modes this proposal is exposed to and separates the structural ones from the fixable ones.";
+    flags.innerHTML=""; return;
+  }
+  const risk={}; Object.keys(TAG).forEach(k=>risk[k]=0);
+  SCQ.forEach((q,i)=>{risk[q.c]+=scState[i]});
+  const exposed=Object.keys(risk).filter(k=>risk[k]>=2).sort((a,b)=>risk[b]-risk[a]);
+  const struct=exposed.filter(k=>STRUCTURAL.includes(k));
+  head.textContent = exposed.length===0
+    ? "No failure mode is strongly indicated."
+    : "Exposed to "+exposed.length+" of 11 failure modes.";
+  sum.textContent = exposed.length===0
+    ? " Re-run it with the people who own the verifier relationships rather than the build, and check the answers survive contact with them."
+    : (struct.length
+      ? " "+struct.length+" structural: "+struct.map(k=>TAG[k].label).join(", ")+
+        ". No delivery plan reaches those. Change the use case, change the rule, or stop."
+      : " All of these are execution and funding findings, which are inside your control.");
+  flags.innerHTML=exposed.map(k=>
+    '<li><span class="fl-tag" style="background:'+FAM[TAG[k].f].color+'"></span><b>'+
+    TAG[k].label+'.</b> '+TAG[k].d+' <i>'+TAG[k].fix+'</i></li>').join("");
+}
+
+/* ============ QUIZ ============ */
+const QUIZ=[
+ {p:"What does the record show about cryptographic failure?",
+  o:["It caused roughly a third of failures","The author identified it as the primary cause of none of the failures","It caused most early failures only","The record does not address it"],
+  a:1,ok:"Exactly.",no:"Look again at the claim as stated.",
+  e:"In this sample, weak cryptography was not identified as the primary cause of any failed outcome. That is a statement about the sample rather than a proof of a negative, and the technical layer remains the one this field is best at."},
+ {p:"Why does the record tag programs with several failure modes rather than one?",
+  o:["To be comprehensive","Because programs rarely fail one way at a time, and the causal order between modes is the finding","To make the chart look fuller","Because the categories overlap and cannot be separated"],
+  a:1,ok:"Right.",no:"Not quite.",
+  e:"GOV.UK Verify carries seven, and the order matters. A political constraint forced the federated design, which created the coordination problem, which made the holder experience unpredictable. A single label records one symptom and loses the mechanism."},
+ {p:"What makes something an anchor tenant?",
+  o:["Its size","Its enthusiasm for the program","A motive to verify that predates the program","A signed memorandum of understanding"],
+  a:2,ok:"Right.",no:"Not quite.",
+  e:"The test is whether the verifier would still need to solve the problem if your program did not exist. A large, enthusiastic participant whose only reason to verify is that you asked is a pilot participant, and pilot participants end with pilot funding."},
+ {p:"Why is the liability floor different from an ordinary regulatory cost?",
+  o:["It is more expensive to comply with","It caps the design's value proposition rather than raising its price","It applies in more jurisdictions","It changes more frequently"],
+  a:1,ok:"That is the distinction.",no:"The difference is sharper than cost.",
+  e:"Most regulation makes a design more expensive and remains satisfiable. Where responsibility for the determination stays with the verifier, a credential can remove the checking but not the accountability, so the value the design was sold on is capped at the component the rules let the verifier stop performing."},
+ {p:"What do the Scandinavian and Dutch systems have in common with PIV and CAC?",
+  o:["Smart card form factors","Government funding","The party bearing the verification obligation is the party that built the system","Biometric enrollment"],
+  a:2,ok:"Yes.",no:"Look at who paid.",
+  e:"Banks carried AML obligations and fraud losses; the Department of Defense needed facility access control. In each case the verifier and the builder were the same institution, which collapses the asymmetry the rest of the record suffers from."},
+ {p:"What is the contribution of separating IAL, AAL and FAL in NIST SP 800-63?",
+  o:["It creates three tiers of a single assurance score","It makes proofing strength, authentication strength and federation strength independent decisions","It defines three vendor certification levels","It maps to low, medium and high risk"],
+  a:1,ok:"Correct.",no:"They are not one scale.",
+  e:"How well you established who someone is, how strongly they proved it is still them, and how much an assertion can be trusted in transit are separable questions. Conflating them is how programs end up over-proofing low-risk transactions and excluding people for no security gain."},
+ {p:"What does the lock-in paradox describe?",
+  o:["Vendor contract dependency","Success making architectural mistakes unfixable","Users unable to change identity providers","Regulatory capture by incumbents"],
+  a:1,ok:"Right.",no:"It is about scale, not contracts.",
+  e:"The systems with enough adoption to matter are the systems whose foundational choices can no longer be revised. E-passports carry two decades of deployment, and the identifier and validation decisions made at the start are now effectively permanent."},
+ {p:"Why did OAuth win, on this reading?",
+  o:["It was cryptographically superior","It was simple, and simplicity drives adoption","It made something verifiers already wanted cheap to obtain","It had government backing"],
+  a:2,ok:"That is the sharper version.",no:"The obvious answer is incomplete.",
+  e:"Simplicity mattered because it lowered the price of something the verifier side already wanted, meaning no password database and no recovery burden. A credential can copy the simplicity and still offer the verifier nothing, which copies the wrong variable."},
+ {p:"Which condition most clearly disqualifies a holder-controlled architecture?",
+  o:["A requirement for offline verification","A legally required institutional override","A large user population","Cross-border recognition"],
+  a:1,ok:"Correct.",no:"One condition is named specifically.",
+  e:"Court orders, sanctions listings and safeguarding interventions require an institution to revoke or freeze unilaterally. Decentralisation limits that by design, so the architecture and the requirement are in opposition rather than one being unfinished."},
+ {p:"What is the Battle of the Gauges used to illustrate?",
+  o:["Competing standards eventually merge on their own","Better components do not resolve an incompatibility that needs a forcing function","Government mandates always beat markets","Early standardization prevents fragmentation"],
+  a:1,ok:"Yes.",no:"Not the lesson drawn here.",
+  e:"Incompatible track widths were not solved by better railcars. They were solved by a mandate and a project large enough to force convergence. Specifications produce commonality; only enforcement produces compatibility."},
+ {p:"What does the post propose as the lever that reaches the asymmetry?",
+  o:["Better standards enforcement","More funding","Changing the success metric to a verifier-side outcome","Mandating acceptance in law"],
+  a:2,ok:"Yes.",no:"Not the closing argument.",
+  e:"A program reported on credentials issued will optimize credentials issued. A program reported on transactions completed at a verifier under no obligation to participate has to solve the deciding half, because nothing else moves the number."},
+ {p:"Why is eIDAS 2.0 marked 'in flight' rather than classified?",
+  o:["The data is not public","Classifying an in-flight program by an expected failure is forecasting dressed as evidence","It is too small to matter","Its outcome is already known"],
+  a:1,ok:"That is the reason.",no:"It is a methodological point.",
+  e:"The record is the evidence the argument rests on. Sorting a live program into the failure the author predicts would let the conclusion write its own support. The prediction is made openly in the current-generation section instead."}
+];
+const qb=document.getElementById("quiz-body");
+qb.innerHTML=QUIZ.map((q,i)=>{
+  const idx=q.o.map((_,j)=>j);
+  for(let k=idx.length-1;k>0;k--){const r=Math.floor(Math.random()*(k+1));[idx[k],idx[r]]=[idx[r],idx[k]];}
+  return '<div class="q"><span class="qn">'+(i+1)+' / '+QUIZ.length+'</span><p class="qp">'+q.p+
+   '</p><div class="q-opts">'+idx.map(j=>
+   '<button class="q-opt" data-q="'+i+'" data-j="'+j+'">'+q.o[j]+'</button>').join("")+
+   '</div><div class="q-exp" id="qe'+i+'"></div></div>';
+}).join("");
+qb.addEventListener("click",e=>{
+  const b=e.target.closest(".q-opt"); if(!b||b.disabled) return;
+  const i=+b.dataset.q,j=+b.dataset.j,q=QUIZ[i];
+  [...qb.querySelectorAll('.q-opt[data-q="'+i+'"]')].forEach(x=>{
+    x.disabled=true; if(+x.dataset.j===q.a)x.classList.add("correct")});
+  if(j!==q.a)b.classList.add("wrong");
+  const ex=document.getElementById("qe"+i);
+  ex.innerHTML="<b>"+(j===q.a?q.ok:q.no)+"</b> "+q.e;
+  ex.classList.add("show");
+});
+
+/* ============ SIDE CONTENTS ACTIVE STATE ============ */
+(function(){
+  const rail=document.getElementById("rail");
+  if(!rail) return;
+  const links=[...rail.querySelectorAll('a[href^="#s"]')];
+  const targets=links.map(a=>document.querySelector(a.getAttribute("href"))).filter(Boolean);
+  if(!targets.length) return;
+  let current=null;
+  function mark(el){
+    if(el===current) return;
+    current=el;
+    links.forEach(a=>a.classList.toggle("active", a.getAttribute("href")==="#"+el.id));
+    const on=rail.querySelector("a.active");
+    if(on){
+      const r=on.getBoundingClientRect(), rr=rail.getBoundingClientRect();
+      if(r.top<rr.top+8||r.bottom>rr.bottom-8) on.scrollIntoView({block:"nearest"});
+    }
+  }
+  const io=new IntersectionObserver(entries=>{
+    const vis=entries.filter(e=>e.isIntersecting)
+      .sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top);
+    if(vis.length) mark(vis[0].target);
+  },{rootMargin:"-12% 0px -70% 0px",threshold:0});
+  targets.forEach(t=>io.observe(t));
+})();
+</script>
+</body>
+</html>

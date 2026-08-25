@@ -1,0 +1,338 @@
+[
+ {
+  "p": "Digital Signature Directive 1999/93/EC",
+  "w": "European Union",
+  "y": "1999",
+  "o": "Failed",
+  "tags": [
+   "No anchor tenant",
+   "Framework without enforcement",
+   "Coordination failure (contributing)"
+  ],
+  "n": "Legal recognition for e-signatures, and a limited mutual recognition for qualified ones, without the operational interoperability that would make either useful across a border. Categories set, implementation started, the hard questions left to standards work and national discretion. Diverged accordingly."
+ },
+ {
+  "p": "Federal Bridge / FPKI",
+  "w": "United States",
+  "y": "2000",
+  "o": "Working",
+  "tags": [
+   "Verifier integration cost (contributing)"
+  ],
+  "n": "Routinely cited as the PKI era's emblematic failure, which the record does not support. Its stated scope was interoperability between federal agency PKIs and the entity domains that transact with them, and within that scope it worked: commercial bridges cross-certified because their members needed to do business with agencies requiring the credentials, CertiPath for aerospace and defense supply chains and SAFE-BioPharma for pharmaceutical exchange with FDA and DoD. Cross-certification is expensive, and it never reached commercial-to-commercial use where no agency was a party. That was never the goal."
+ },
+ {
+  "p": "CAC",
+  "w": "United States (DoD)",
+  "y": "2000",
+  "o": "Working",
+  "tags": [],
+  "n": "Four million-plus personnel. Bounded scope, certain enforcement, and the beneficiary paying. Generalised no further, and was never meant to."
+ },
+ {
+  "p": "Estonia eID",
+  "w": "Estonia",
+  "y": "2002",
+  "o": "Working",
+  "tags": [
+   "Governance underfunded (contributing)"
+  ],
+  "n": "The sequencing exemplar: embedded in tax, voting, prescriptions and business registration from day one, and it worked for that reason. What it did not do was model failure of the credential itself at population scale. Roughly 120,000 faulty cards in 2011, then a 2017 chip vulnerability affecting about 760,000 and a national freeze. The response was competent and it was improvised, because mass revocation and recovery had not been designed as a normal operating condition."
+ },
+ {
+  "p": "Liberty Alliance / SAML",
+  "w": "Industry consortium",
+  "y": "2002",
+  "o": "Failed",
+  "tags": [
+   "Verifier integration cost",
+   "Coordination failure (contributing)"
+  ],
+  "n": "Survives in enterprise federation. Never reached the consumer web it was aimed at, because the integration cost only made sense where an IT department was already paying it."
+ },
+ {
+  "p": "Sweden BankID",
+  "w": "Sweden",
+  "y": "2003",
+  "o": "Working",
+  "tags": [],
+  "n": "Bank-led, resting on identity obligations and fraud exposure the banks already carried. Institutional trust reused rather than manufactured."
+ },
+ {
+  "p": "Singpass",
+  "w": "Singapore",
+  "y": "2003",
+  "o": "Working",
+  "tags": [],
+  "n": "Government-led with genuine utility from the outset, then iterated continuously, including rapid pandemic adaptation. The funded operating model is the differentiator."
+ },
+ {
+  "p": "PIV (HSPD-12)",
+  "w": "United States",
+  "y": "2004",
+  "o": "Working",
+  "tags": [
+   "Verifier integration cost (contributing)"
+  ],
+  "n": "Worked inside the mandate for the same reasons as CAC. Adoption outside the federal population never happened; the integration burden had no corresponding payoff."
+ },
+ {
+  "p": "Norway BankID",
+  "w": "Norway",
+  "y": "2004",
+  "o": "Working",
+  "tags": [],
+  "n": "Same mechanism as Sweden. The verifier arrived with its own motive and funded the system it wanted."
+ },
+ {
+  "p": "DigiD",
+  "w": "Netherlands",
+  "y": "2005",
+  "o": "Working",
+  "tags": [],
+  "n": "Government login for public services, run by the state and accepted across it. The verifier and the issuer are the same institution, so no persuasion across a boundary was needed."
+ },
+ {
+  "p": "iDIN",
+  "w": "Netherlands",
+  "y": "2016",
+  "o": "Working",
+  "tags": [],
+  "n": "Bank-backed identity for private-sector use, built by the parties already carrying know-your-customer obligations. Offered alongside DigiD in a government pilot as an alternative a user could choose, not integrated into it. Acquired by itsme in December 2025."
+ },
+ {
+  "p": "E-passports (ICAO Doc 9303)",
+  "w": "150+ countries",
+  "y": "2005",
+  "o": "Working",
+  "tags": [
+   "Governance underfunded",
+   "Framework without enforcement",
+   "Locked-in architecture (contributing)",
+   "Coordination failure (contributing)"
+  ],
+  "n": "The most widely deployed identity credential in history, and the clearest case of a sequence run backwards. Chips went to hundreds of millions of people before the directory participation, validation infrastructure and reader estates that made them worth checking existed, and the early workaround was to relax certificate checking. The interoperability did arrive, roughly two decades later, which is the finding rather than the exoneration: the system spent twenty years below its promise and no year of that appeared on anyone's report."
+ },
+ {
+  "p": "UK National ID Cards scheme",
+  "w": "United Kingdom",
+  "y": "2006",
+  "o": "Failed",
+  "tags": [
+   "Political constraint",
+   "No anchor tenant (contributing)"
+  ],
+  "n": "The Identity Cards Act created a card and a national register in 2006, and a limited rollout issued cards before the coalition government abolished both in 2010. The political reversal, not a technical one, took a central register off the table for everything that followed, which is the constraint Verify was designed around."
+ },
+ {
+  "p": "InfoCard / CardSpace",
+  "w": "Microsoft",
+  "y": "2006",
+  "o": "Failed",
+  "tags": [
+   "Verifier integration cost",
+   "No anchor tenant",
+   "Holder friction (contributing)"
+  ],
+  "n": "Architecturally correct and still is. Windows-dependent, complex to integrate, and overtaken by a protocol that asked developers for far less and gave verifiers more."
+ },
+ {
+  "p": "OAuth and OpenID Connect",
+  "w": "Industry",
+  "y": "2007",
+  "o": "Working",
+  "tags": [
+   "Framework without enforcement (contributing)",
+   "Locked-in architecture (contributing)"
+  ],
+  "n": "Won on integration cost by handing verifiers something they already wanted. Fragmented in practice, with dominant implementations becoming the de facto specification."
+ },
+ {
+  "p": "nPA national ID card",
+  "w": "Germany",
+  "y": "2010",
+  "o": "Failed",
+  "tags": [
+   "Cost/benefit misaligned",
+   "Holder friction",
+   "Verifier integration cost (contributing)",
+   "No anchor tenant (contributing)"
+  ],
+  "n": "Sound cryptography, and the record's cleanest natural experiment. Automatic activation from 2017 took the issuance number past 97 per cent of cards in circulation; actual use went from just under ten per cent in 2022 to 22 per cent in 2024. The issuer controlled one number and not the other."
+ },
+ {
+  "p": "Aadhaar",
+  "w": "India",
+  "y": "2010",
+  "o": "Working",
+  "tags": [
+   "Political constraint (contributing)",
+   "Exclusion (contributing)",
+   "Governance underfunded (contributing)"
+  ],
+  "n": "The largest deployment ever attempted, with real effect on benefit delivery and financial inclusion. Purpose limitation, exclusion and oversight remained unresolved until the courts intervened in 2018."
+ },
+ {
+  "p": "GIDS smart card specification",
+  "w": "Microsoft",
+  "y": "2010",
+  "o": "Failed",
+  "tags": [
+   "No anchor tenant"
+  ],
+  "n": "The counterexample to the distribution argument, and the reason it needs qualifying. A class minidriver shipped inbox with every Windows since 7 SP1, so a GIDS card works with no middleware at all, and it was designed for remote deployment, meaning credentials provisioned to a device rather than issued across a counter. It still went essentially nowhere outside Microsoft's own stack, where it backed Windows virtual smart cards. Distribution was solved. No verifier outside that stack ever needed a GIDS card."
+ },
+ {
+  "p": "NSTIC",
+  "w": "United States",
+  "y": "2011",
+  "o": "Failed",
+  "tags": [
+   "No anchor tenant",
+   "Coordination failure",
+   "Cost/benefit misaligned (contributing)"
+  ],
+  "n": "Funded pilots, convened participants and waited for a market to form, which is enabling an ecosystem rather than building one. No large service required the credentials, so no provider had a reason to invest, and the chicken-and-egg problem was never broken."
+ },
+ {
+  "p": "My Number",
+  "w": "Japan",
+  "y": "2015",
+  "o": "Working",
+  "tags": [
+   "Governance underfunded",
+   "Coordination failure (contributing)",
+   "Political constraint (contributing)"
+  ],
+  "n": "The mirror image of the nPA. Japan moved the issuance number with cash incentives and by folding the health insurance card into it, rather than by changing a default. Forcing acceptance then surfaced what low usage had concealed: 7,312 cases of insurance records linked to the wrong individual, wrong residence certificates printed at convenience stores, a nationwide record-by-record recheck devolved to municipalities, and the insurance card phase-out delayed a year."
+ },
+ {
+  "p": "GOV.UK Verify",
+  "w": "United Kingdom",
+  "y": "2016",
+  "o": "Failed",
+  "tags": [
+   "Political constraint",
+   "Coordination failure",
+   "No anchor tenant",
+   "Holder friction",
+   "Exclusion (contributing)",
+   "Framework without enforcement (contributing)",
+   "Cost/benefit misaligned (contributing)"
+  ],
+  "n": "Seven modes, in causal order. A political constraint (no central database) forced a federated design; federation across commercial providers created a coordination problem; differing evidence rules made the holder experience unpredictable, producing a 48% single-attempt verification success rate (a measure the NAO cautioned excluded people who abandoned before provider confirmation) and demographic exclusion; certification was to a standard rather than to a working transaction; providers were paid per verification at volumes that never arrived; and departments had alternatives with no mandate to switch. 19 of a forecast 46, 48% verification success against 90% expected."
+ },
+ {
+  "p": "SPID, and the CIE succession",
+  "w": "Italy",
+  "y": "2016",
+  "o": "Working",
+  "tags": [
+   "Locked-in architecture (contributing)",
+   "Political constraint (contributing)"
+  ],
+  "n": "SPID reached critical mass through pandemic-era mandates, and a state-controlled alternative in CIE has existed alongside it throughout. The interest here is structural rather than current-affairs: whichever way the policy lands, tens of millions of holders and a relying-party estate already depend on the federated architecture, which makes this the one case in the record where lock-in can be watched rather than reconstructed."
+ },
+ {
+  "p": "itsme",
+  "w": "Belgium",
+  "y": "2017",
+  "o": "Working",
+  "tags": [],
+  "n": "A bank and telco consortium, built by the parties already carrying AML, PSD2 and SIM-registration obligations. Around 7.5 million users and over 80 per cent of Belgian adults, with more than a million actions a day, and no government mandate anywhere in the story: it grew because it was the quickest way into banking. The institutional-trust pattern outside Scandinavia, which is the case that makes the cultural explanation hard to sustain. Acquired iDIN in December 2025 and is expanding across the EU ahead of EUDI."
+ },
+ {
+  "p": "Login.gov",
+  "w": "United States",
+  "y": "2017",
+  "o": "Working",
+  "tags": [
+   "Exclusion (contributing)"
+  ],
+  "n": "Deliberately unambitious scope, usability chosen over architecture. Works modestly where the grand designs did not."
+ },
+ {
+  "p": "FIDO2 / passkeys",
+  "w": "Industry + platforms",
+  "y": "2018",
+  "o": "Working",
+  "tags": [],
+  "n": "Not identity proofing, and succeeding anyway. Driven by an immediate relying-party benefit of no password database and fewer recovery tickets, plus platform distribution, with no mandate anywhere."
+ },
+ {
+  "p": "Bank KYC via verifiable credentials",
+  "w": "Multiple",
+  "y": "2019",
+  "o": "Failed",
+  "tags": [
+   "Liability floor",
+   "Verifier integration cost (contributing)"
+  ],
+  "n": "A recurring proposal meeting a recurring wall. A regulated firm may use a certified verification service for parts of customer due diligence, but it remains responsible for the adequacy of the overall determination, so the credential removes less duplicated work than the pitch assumes."
+ },
+ {
+  "p": "MOSIP deployments",
+  "w": "Philippines, Ethiopia, Morocco, others",
+  "y": "2020",
+  "o": "In flight",
+  "tags": [
+   "Exclusion (contributing)",
+   "Governance underfunded (contributing)"
+  ],
+  "n": "Open-source foundational identity for states without the capacity to build their own, aimed squarely at the exclusion problem. The standing risk is a platform adopted faster than the governance capacity to operate it."
+ },
+ {
+  "p": "mDL / ISO 18013-5 + TSA",
+  "w": "United States",
+  "y": "2021",
+  "o": "Working",
+  "tags": [
+   "Framework without enforcement (contributing)",
+   "Governance underfunded (contributing)"
+  ],
+  "n": "TSA acceptance is the clearest anchor tenant in the modern record, an obligation predating the credential and made cheaper by it. Verifier implementations and reader estates are the exposure."
+ },
+ {
+  "p": "Entra Verified ID",
+  "w": "Microsoft",
+  "y": "2022",
+  "o": "Uncertain",
+  "tags": [
+   "No anchor tenant",
+   "Verifier integration cost (contributing)",
+   "Coordination failure (contributing)"
+  ],
+  "n": "An active product with continuing investment and several first-party uses, including generally available account recovery from 2026, but without public adoption data sufficient to compare it with Microsoft's established federation products, and wallet interoperability has not visibly materialised at scale. Outcome not classifiable from the public record."
+ },
+ {
+  "p": "GOV.UK One Login",
+  "w": "United Kingdom",
+  "y": "2023",
+  "o": "Working",
+  "tags": [
+   "Governance underfunded",
+   "Exclusion (contributing)",
+   "Political constraint (contributing)"
+  ],
+  "n": "Built to learn from Verify, and exposed to a different failure. Removed from the DIATF register for roughly nine months in 2025 after a supplier allowed its own certification to lapse, with no finding against One Login's own security or approach. The service kept operating and expanding throughout, past 200 services and 15 million proven identities. A supplier-governance failure inside a working program rather than a failed one."
+ },
+ {
+  "p": "Utah mobile identity (SB260)",
+  "w": "Utah",
+  "y": "2023",
+  "o": "In flight",
+  "tags": [
+   "No anchor tenant (contributing)",
+   "Coordination failure (contributing)"
+  ],
+  "n": "State-endorsed rather than state-controlled, with KERI-based rotation and recovery, offline verifiability, and delegation and guardianship treated as design requirements rather than later remediation. Its exposure is the one this record punishes most: no verifier has yet been named whose need to check identity predates the program, and a multi-state consortium is the shape section 13 describes as many independent parties needing to converge with nothing obliging them to. KERI is also a young stack to bet a statutory framework on. No outcome to classify yet."
+ },
+ {
+  "p": "eIDAS 2.0 / EUDI Wallet",
+  "w": "European Union",
+  "y": "2024",
+  "o": "In flight",
+  "tags": [],
+  "n": "Real technical unification across ISO 18013-5, W3C verifiable credentials, SD-JWT and mdoc, plus a mutual recognition obligation with legal force. Also a framework permitting variable national implementation. Exposed to framework-without-enforcement, coordination failure and the liability floor. No outcome to classify yet."
+ }
+]

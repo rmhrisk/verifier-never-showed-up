@@ -1,0 +1,86 @@
+<div class="limits" id="limits">
+<h3>What this post does not establish</h3>
+
+<p>The record is drawn from wealthy countries and national-scale programs. Brazil, Nigeria, Indonesia and China are absent. That bounds the central claim: &ldquo;acceptance decides&rdquo; assumes a verifier who can decline, and where the state is at once issuer, dominant verifier and beneficiary, it does not hold in the same form. Aadhaar is the only entry approaching that shape.</p>
+
+<p>Two disclosures. I am an author of the GIDS specification and I contributed to PIV, and both are in the record; GIDS is tagged as a failure, and I have an obvious interest in that failure being about demand rather than about design. Utah's SEDI work is in the record as a program I advise on and have spoken in support of, and this analysis started as a talk at their summit. It is tagged <em>in flight</em> with the two modes the instrument indicates, which is checkable against the table, and nothing here is evidence that it works because there is not yet anything to be evidence of.</p>
+
+<p>Where this post gives a number it has been checked against a source. Where it explains why something failed, that is my reading of the case.</p>
+
+<p>These figures are not verified against a primary source: Estonia's 120,000 faulty cards in 2011 and roughly 760,000 affected in 2017; the $647 million of Washington state unemployment fraud; the claim that certificate checking was relaxed as a workaround in e-passport deployments, which is the load-bearing half of that argument; the 7,312 mismatched Japanese insurance records, for which I have contemporaneous reporting but not the ministry's own release; itsme's adoption figures, which are company-published; the Scandinavian and Singapore adoption and benefit numbers; and the Cabinet Office accounting officer assessment of 2022, which I have not resolved to a permanent URL. The ten-to-one cost ratio between hardware tokens and SMS delivery in section 16 is an order of magnitude from practice rather than a sourced figure. The comparison between the Apple and Android security models in the same section, the SD-JWT linkability and server-retrieval claims in section 7, and the characterisation of Italian policy direction in section 20 are my own reading rather than anything cited.</p>
+
+
+</div>
+
+<div class="sources" id="sources">
+<h3>Sources</h3>
+<p style="font-family:var(--sans);font-size:.85rem;color:var(--muted);max-width:44rem">
+ Entries marked name the document but have not been resolved to a verified URL, and no URL here has been supplied from memory.
+</p>
+<ol>
+<li id="r1">European Parliament and Council, <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:31999L0093">Directive 1999/93/EC on a Community framework for electronic signatures</a>, 13 December 1999.</li>
+
+<li id="r2">Estonian Information System Authority and the national ID service, on the <a href="https://www.id.ee/en/article/id-card-certificate-security-risk/">2017 ROCA-related eID vulnerability</a> and the certificate suspension affecting cards issued from October 2014, and on the 2011 faulty card distribution.</li>
+
+<li id="r26">Federal PKI Policy Authority and cross-certified bridge documentation: the <a href="https://www.identrust.com/us-federal-bridge-cross-certification">FBCA certificate policy scope</a>, established to facilitate interoperability between the FBCA and other entity PKI domains; the <a href="https://www.idmanagement.gov/docs/fpki-fpkima-newsletter-62.pdf">FPKIMA newsletter</a> on the CertiPath bridge serving the defense and aerospace community and the SAFE-BioPharma bridge serving healthcare; and <a href="https://www.prnewswire.com/news-releases/certipath-cross-certified-to-us-federal-bridge-for-piv-i-113454299.html">CertiPath's PIV-I cross-certification</a>, taken up so that supply-chain members could do business with federal agencies requiring medium to high assurance credentials.</li>
+<li id="r27">Danish government digital signature study of 1999, from which NemID grew, and the state-funded rather than market-competed basis of the scheme; see the <a href="https://en.wikipedia.org/wiki/MitID">MitID</a> and <a href="https://en.wikipedia.org/wiki/NemID">NemID</a> histories and the Danish Agency for Digitalisation.</li>
+<li id="r28">Danish law requiring digital communication with the public sector from November 2014, and the practical dependency on NemID to access it, described by <a href="https://itpol.dk/notater/mandatory-digital-communication-with-public-sector-in-Denmark">IT-Politisk Forening</a>, including the exemption process and the recommendation that citizens unable to comply authorise a family member.</li>
+<li id="r29">Social Security Administration, <a href="https://www.ssa.gov/history/hfaq.html">history FAQ</a>: cards issued from 1946 carried the legend &ldquo;FOR SOCIAL SECURITY PURPOSES, NOT FOR IDENTIFICATION&rdquo;, and the legend was removed with the eighteenth design version issued from 1972. On the first numbers being issued in November 1936, see the SSA's account of <a href="https://www.ssa.gov/history/ssn/firstcard.html">the first card</a>.</li>
+<li id="r25">NIST, <a href="https://csrc.nist.rip/groups/ST/crypto_apps_infra/documents/emareport_20001015.pdf">Report of the Federal Bridge Certification Authority Initiative and Demonstration</a>, October 2000, for the FBCA prototype going operational on 8 February 2000 and the five interoperating domains demonstrated that April.</li>
+<li id="r3">ICAO, Doc 9303, <i>Machine Readable Travel Documents</i>, and the <a href="https://www.icao.int/Security/FAL/PKD/Pages/default.aspx">ICAO Public Key Directory</a>, for the specification and the participation record behind it.</li>
+
+<li id="r4">Regulation (EU) 2024/1183 amending Regulation (EU) No 910/2014 as regards establishing the European Digital Identity Framework, <a href="https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX%3A32024R1183">eIDAS 2.0</a>, including Article 45 on qualified website authentication certificates.</li>
+
+<li id="r5">National Audit Office, <a href="https://www.nao.org.uk/reports/investigation-into-verify/"><i>Investigation into Verify</i></a>, March 2019 (<a href="https://www.nao.org.uk/wp-content/uploads/2019/03/Investigation-into-verify.pdf">full report, PDF</a>). Every figure cited here was checked against that document: 19 connected services, 48 per cent verification success, 3.6 million sign-ups against a 25 million target, at least &pound;154 million of cost to September 2018, the &pound;873 million to &pound;217 million benefits revision, &pound;37 million a year of claimed avoided building costs, the non-cash-releasing classification, the finding that the NAO could not replicate or validate the estimated benefits, and HMRC's &pound;6.7 million as the only departmental payment. Cabinet Office Accounting Officer Assessment, 20 September 2022, for &pound;485.3 million of benefits against &pound;233.38 million of cost through 2021/22 and the 2.1:1 ratio.</li>
+
+<li id="r6">On GOV.UK One Login: <a href="https://www.computerweekly.com/news/366623835/Govuk-One-Login-loses-certification-for-digital-identity-trust-framework">Computer Weekly</a> for the DIATF lapse via supplier iProov and automatic removal from the register; <a href="https://www.biometricupdate.com/202601/gov-uk-one-login-regains-diatf-certification-by-kantara-but-role-questions-linger">Biometric Update</a> for iProov's recertification dated 16 October 2025; <a href="https://www.publictechnology.net/2026/02/05/government-and-politics/one-login-regains-government-trustmark-as-gds-deploys-systems-to-prevent-future-lapses/">PublicTechnology</a> for the return to the register and the supply-chain tracking that followed; <a href="https://www.biometricupdate.com/202506/uk-startups-accreditation-18m-one-login-contracts-to-build-digital-id-trust">Biometric Update</a> for the &pound;18m in Accenture and PA Consulting contracts, a ceiling rather than a recorded spend.</li>
+
+<li id="r7">Personalausweisportal (German Federal Ministry of the Interior), <a href="https://www.personalausweisportal.de/Webs/PA/EN/government/offering-electronic-identification/offering-electronic-identification-node.html">on offering electronic identification</a>: automatic eID activation on collection since July 2017, and roughly 70.4 million activated cards by October 2024, over 97 per cent of those in circulation.</li>
+
+<li id="r8">Supreme Court of India, <i>Justice K. S. Puttaswamy (Retd.) v. Union of India</i>, 26 September 2018, on limits to mandatory Aadhaar use.</li>
+
+<li id="r9">Washington State Employment Security Department, <a href="https://esd.wa.gov/newsroom">newsroom</a>, on pandemic-era unemployment insurance fraud losses and recoveries.</li>
+
+<li id="r10">NIST, post-quantum cryptographic standards, August 2024: <a href="https://csrc.nist.gov/pubs/fips/203/final">FIPS 203</a>, <a href="https://csrc.nist.gov/pubs/fips/204/final">FIPS 204</a> and <a href="https://csrc.nist.gov/pubs/fips/205/final">FIPS 205</a>.</li>
+
+<li id="r11">NIST, <a href="https://csrc.nist.gov/pubs/sp/800/63/4/final">Special Publication 800-63, Digital Identity Guidelines</a>, and its component volumes on enrollment and identity proofing, authentication and lifecycle management, and federation and assertions. The earlier <a href="https://pages.nist.gov/800-63-3/">800-63-3</a> remains the most widely cited revision.</li>
+
+<li id="r12">United Nations <a href="https://unstats.un.org/legal-identity-agenda/">Legal Identity Agenda</a>, and the <a href="https://www.mosip.io/">MOSIP</a> foundational identity platform, for the digital public infrastructure framing and deployment status across the Philippines, Ethiopia, Morocco and other adopters.</li>
+
+<li id="r13">Initiative D21 and the Technical University of Munich, <a href="https://initiatived21.de/publikationen/egovernment-monitor/"><i>eGovernment MONITOR</i></a>, 2022 and 2024 editions, for online-ID usage of 10 per cent in 2022, 14 per cent in 2023 and 22 per cent by May 2024, alongside 39 per cent having set a PIN.</li>
+
+<li id="r14">Michael E. Rose, J&ouml;rg Hoffmann and Dietmar Harhoff, <a href="https://www.wirtschaftsdienst.eu/inhalt/jahr/2025/heft/7/beitrag/wer-hat-die-elektronische-ausweisfunktion-aktiviert.html">&ldquo;Wer hat die elektronische Ausweisfunktion aktiviert?&rdquo;</a>, <i>Wirtschaftsdienst</i> 105 (7), 2025, 525&ndash;528 (<a href="https://doi.org/10.2478/wd-2025-0134">doi:10.2478/wd-2025-0134</a>). Max Planck Institute for Innovation and Competition. Survey conducted October 2024: 35 per cent of the adult resident population had activated the eID and 6 per cent did not know it existed, Berlin highest at 53.6 per cent.</li>
+
+<li id="r15">Sumsub, <a href="https://sumsub.com/fraud-report/">identity fraud reporting</a>, on deepfakes as a share of detected identity-fraud attempts. Vendor-published, with a commercial interest in the number being large. The post does not rely on the figures and says why.</li>
+
+<li id="r16">US Government Accountability Office, <a href="https://www.gao.gov/products/gao-23-106696"><i>Unemployment Insurance: Estimated Amount of Fraud during Pandemic Likely Between $100 Billion and $135 Billion</i></a>, GAO-23-106696, September 2023 (<a href="https://www.gao.gov/assets/gao-23-106696.pdf">PDF</a>). Covers April 2020 to May 2023, or about 11 to 15 per cent of total benefits paid.</li>
+
+<li id="r17">Japanese Ministry of Health, Labour and Welfare disclosure of May 2023 on My Number health-insurance record linkage, for 7,312 records linked to the wrong individual between October 2021 and November 2022; plus contemporaneous reporting on the convenience-store certificate misprints, the June 2023 emergency review, the national record-by-record recheck, and the year's delay to the insurance-card transition. The ministry's standing policy hub is at <a href="https://www.mhlw.go.jp/stf/newpage_08277.html">mhlw.go.jp</a> and covers the program but not this disclosure.</li>
+
+<li id="r18">itsme / Belgian Mobile ID, <a href="https://www.itsme-id.com/business/blog/numbers">published user numbers</a>, and <a href="https://www.biometricupdate.com/202512/itsme-acquires-idin-in-merger-of-benelux-bank-driven-verification-systems">Biometric Update</a> on the December 2025 acquisition of iDIN. Adoption figures are company-published.</li>
+
+<li id="r19">Microsoft, <a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/smartcard/windows-inbox-smart-card-minidriver">Windows inbox smart card minidriver</a>, for the class minidriver supporting PIV and GIDS card edges shipped from Windows 7 SP1 onward, and the PIV-then-GIDS discovery order.</li>
+
+<li id="r20">Microsoft, <a href="https://learn.microsoft.com/en-us/archive/blogs/privacyimperative/microsoft-acquires-credenticas-u-prove-technology">announcement of the Credentica acquisition</a>, March 2008, stating the intention to bring U-Prove into Windows Communication Foundation and Windows CardSpace, and Kim Cameron's <a href="https://www.identityblog.com/?p=937">contemporaneous commentary</a>. CardSpace shipped in 2006 and was discontinued in 2011.</li>
+
+<li id="r21">Ross Anderson, <a href="https://www.cl.cam.ac.uk/~rja14/book.html"><i>Security Engineering: A Guide to Building Dependable Distributed Systems</i></a>, for the NSA definitions adopted throughout: a trusted system or component is one whose failure can break the security policy, and a trustworthy one is one that will not fail.</li>
+
+<li id="r22">Utah <a href="https://sedi.utah.gov/">State-Endorsed Digital Identity</a> and the Department of Government Operations paper <a href="https://privacy.utah.gov/wp-content/uploads/SEDI_ProtectingLiberty.pdf"><i>Protecting Liberty</i></a>. The delegation and guardianship distinction is Timothy Ruff's formulation from the October 2025 SEDI Summit at Utah Valley University, <a href="https://www.techbuzznews.com/utahs-sedi-conference-charts-a-path-for-state-endorsed-digital-identity/">reported by TechBuzz News</a>: delegation temporarily assigns duties without transferring legal responsibility, guardianship legally transfers authority and responsibility.</li>
+
+<li id="r23">Randall Munroe, <a href="https://xkcd.com/927/">&ldquo;Standards&rdquo;, xkcd 927</a>. The comic is not reproduced here; the upper row of the figure in section 17 restates its argument as a sequence diagram in order to contrast it with the case where a forcing function exists. xkcd is published under a <a href="https://xkcd.com/license.html">Creative Commons Attribution-NonCommercial 2.5 license</a>.</li>
+
+<li id="r24">Regulation (EU) No 910/2014 of 23 July 2014 on electronic identification and trust services, repealing Directive 1999/93/EC, <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv%3AOJ.L_.2014.257.01.0073.01.ENG">applying from 1 July 2016</a>, with mutual recognition of notified electronic identification schemes mandatory from 28 September 2018.</li>
+</ol>
+</div>
+
+<div class="quiz" id="quiz">
+  <div class="quiz-head"><h4>&check; Check your understanding</h4></div>
+  <div id="quiz-body"></div>
+</div>
+
+<footer><div>
+<p>First written September 2025, revised August 2026. Thirty years of digital identity programs sorted by failure mode, and an argument that the half of the system deciding adoption is structurally the half nobody owns.</p>
+<p style="margin-top:.9rem">Related. <a href="https://rmhrisk.github.io/assurance-model/">The Assurance Model Was Built for a World That No Longer Exists</a> &middot; <a href="https://rmhrisk.github.io/continuous-assurance/">Why Continuous Assurance Did Not Happen Until Now</a> &middot; <a href="https://rmhrisk.github.io/how-audits-work/">How Audits Work</a> &middot; <a href="https://rmhrisk.github.io/classical-webpki/">A Deep Dive on the Classical WebPKI</a> &middot; <a href="https://rmhrisk.github.io/pq-webpki/">The Post-Quantum WebPKI</a> &middot; <a href="https://unmitigatedrisk.com/">Unmitigated Risk</a>, essays on PKI, privacy and digital identity.</p>
+</div></footer>
+
+</div><!-- /wrap -->

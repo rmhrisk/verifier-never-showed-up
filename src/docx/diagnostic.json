@@ -1,0 +1,82 @@
+[
+ {
+  "q": "Can you name the anchor tenant?",
+  "s": "A specific verifier, named, whose participation is committed rather than hoped for."
+ },
+ {
+  "q": "Would that verifier still need to solve this problem if your program did not exist?",
+  "s": "A motive your program created disappears when your funding does."
+ },
+ {
+  "q": "If a mandate is part of the plan, what exactly is being mandated?",
+  "s": "Compelling a transaction people need works. Compelling possession of a credential moves the issuance number and not the acceptance one."
+ },
+ {
+  "q": "What will acceptance cost the verifier, and who pays it?",
+  "s": "Integration, training, support, and the ongoing cost of accepting."
+ },
+ {
+  "q": "Who remains liable when a credential turns out to be wrong?",
+  "s": "If the verifier does, and regulation says it must, the credential cannot reduce its risk."
+ },
+ {
+  "q": "If liability is meant to transfer, who absorbs the loss and what are they paid?",
+  "s": "A transfer capped below the harm, on per-verification fees, has not moved the risk. It has moved the paperwork."
+ },
+ {
+  "q": "Is an institutional override, meaning revoke or freeze or suspend, legally required here?",
+  "s": "Court orders, sanctions, safeguarding. Holder-controlled architectures limit this by design."
+ },
+ {
+  "q": "Who pays for the credential, and who benefits from it?",
+  "s": "Systems where the holder pays and the verifier benefits stall."
+ },
+ {
+  "q": "What must the holder obtain, install or visit before first use?",
+  "s": "The nPA asked for an office visit, middleware and a purchased reader. Passkeys ask for nothing."
+ },
+ {
+  "q": "Which populations cannot complete enrolment as designed?",
+  "s": "Evidence and device assumptions, degraded biometrics in older users, children, and anyone acting under a power of attorney or guardianship."
+ },
+ {
+  "q": "Is assurance set per transaction, or once for the whole system?",
+  "s": "A single IAL/AAL posture across every use is not a risk decision, it is eleven decisions avoided."
+ },
+ {
+  "q": "Which architectural choices were made for political acceptability rather than function?",
+  "s": "Verify's federated design existed to avoid a central database. That choice created its coordination problem."
+ },
+ {
+  "q": "If this is a new standard, what stops being used, and what makes it stop?",
+  "s": "A mandate with consequences, a buyer too large to refuse, or default platform distribution. Not that yours is better."
+ },
+ {
+  "q": "If two implementations disagree, who decides and who is bound?",
+  "s": "Conformance testing, certification, and a consequence for failing it."
+ },
+ {
+  "q": "How many independent parties must converge for this to work?",
+  "s": "And what forces them to, absent a mandate or an anchor tenant?"
+ },
+ {
+  "q": "Who was in the room before the design was fixed?",
+  "s": "Volume, habit and breadth. One department specifying alone will encode that department, and every other will find the fit wrong."
+ },
+ {
+  "q": "What is the annual operating budget, as a share of build cost?",
+  "s": "Security review, supplier verification, protocol migration, conformance testing."
+ },
+ {
+  "q": "Which security properties are load-bearing by accident?",
+  "s": "Mechanisms borrowed for a property they were not designed to provide, where the party being relied on never agreed to it. SMS one-time passwords are the standing example."
+ },
+ {
+  "q": "Which of today's choices will be unfixable at scale?",
+  "s": "Identifier format, revocation model, algorithm agility, trust-anchor update."
+ },
+ {
+  "q": "What is the primary success metric?",
+  "s": "Credentials issued measures the half you control. Completed transactions measures the half that decides."
+ }
+]

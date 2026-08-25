@@ -1,0 +1,153 @@
+<div class="masthead"><div class="wrap">
+
+  <span>The Verifier Never Showed Up</span>
+  <a href="https://unmitigatedrisk.com/">Unmitigated Risk &middot; August 2026</a>
+</div></div>
+
+<div class="wrap">
+
+<nav class="rail" id="rail" aria-label="Contents">
+  <h2>Contents</h2>
+  <ol>
+    <li class="rpart">I &middot; What Happened</li>
+    <li><a href="#s1"><span class="rnum">1</span>What Changed</a></li>
+    <li><a href="#s2"><span class="rnum">2</span>The PKI Era</a></li>
+    <li><a href="#s3"><span class="rnum">3</span>Federation</a></li>
+    <li><a href="#s4"><span class="rnum">4</span>Platforms</a></li>
+    <li><a href="#s5"><span class="rnum">5</span>Institutional Trust</a></li>
+    <li><a href="#s6"><span class="rnum">6</span>The Bureaucratic Decade</a></li>
+    <li><a href="#s7"><span class="rnum">7</span>Decentralisation</a></li>
+    <li><a href="#s8"><span class="rnum">8</span>Assurance and Inclusion</a></li>
+    <li class="rpart">II &middot; Why It Keeps Happening</li>
+    <li><a href="#s9"><span class="rnum">9</span>The Lifecycle</a></li>
+    
+    <li><a href="#s10"><span class="rnum">10</span>Eleven Failure Modes</a></li>
+    <li><a href="#s11"><span class="rnum">11</span>The Record</a></li>
+    <li><a href="#s12"><span class="rnum">12</span>Acceptance Decides</a></li>
+    <li><a href="#s13"><span class="rnum">13</span>The Liability Floor</a></li>
+    <li><a href="#s14"><span class="rnum">14</span>Where It Works</a></li>
+    <li class="rpart">III &middot; Over Time</li>
+    <li><a href="#s15"><span class="rnum">15</span>Slow Failure</a></li>
+    <li><a href="#s16"><span class="rnum">16</span>An Operating Cost</a></li>
+    <li><a href="#s17"><span class="rnum">17</span>Standards and Convergence</a></li>
+    <li><a href="#s18"><span class="rnum">18</span>The Lock-In Paradox</a></li>
+    <li class="rpart">IV &middot; Applying It</li>
+    <li><a href="#s19"><span class="rnum">19</span>Reading a Proposal</a></li>
+    <li><a href="#s20"><span class="rnum">20</span>The Same Sequence Twice</a></li>
+    <li><a href="#s21"><span class="rnum">21</span>The Delegate</a></li>
+    <li><a href="#s22"><span class="rnum">22</span>What It Tells Us</a></li>
+    <li class="rback"><a href="#limits">What this does not establish</a></li>
+    <li><a href="#sources" style="padding-left:0;border-left:0;font-size:.7rem">Sources</a></li>
+    <li><a href="#quiz" style="padding-left:0;border-left:0;font-size:.7rem">Check your understanding</a></li>
+  </ol>
+</nav>
+
+<div class="titleblock">
+  <h1>The Verifier Never Showed&nbsp;Up</h1>
+  <p class="standfirst">Thirty years of digital identity programs, sorted by how they actually failed, and why the half of the system that decides adoption is the half nobody funds.</p>
+  <p class="byline">Ryan Hurst &middot; September 2025, revised August 2026</p>
+</div>
+
+<figure class="wide">
+<div class="fig-frame">
+<svg viewBox="0 0 860 271" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two halves of an identity system: issuance, which the issuer controls, is funded and scored at launch; acceptance, which decides whether the system exists, sits with parties the issuer cannot mandate.">
+  <style>
+    .hl{font-family:"IBM Plex Sans",sans-serif;font-size:11px;letter-spacing:.09em;font-weight:600}
+    .hb{font-family:"IBM Plex Sans",sans-serif;font-size:12.5px}
+    .hs{font-family:"IBM Plex Sans",sans-serif;font-size:11px;fill:#6A6F79}
+    .hm{font-family:"IBM Plex Mono",monospace;font-size:10px;fill:#6A6F79;letter-spacing:.05em}
+  </style>
+  <text x="0" y="14" class="hl" fill="#6A6F79">ONE SYSTEM, TWO HALVES, ONE BUDGET</text>
+  <rect x="0" y="34" width="330" height="164" fill="#E4EDEF" stroke="#1F4E5F" stroke-width="1.5"/>
+  <text x="18" y="60" class="hl" fill="#1F4E5F">ISSUANCE</text>
+  <text x="18" y="82" class="hb" fill="#16181D">The issuer controls it</text>
+  <line x1="18" y1="94" x2="312" y2="94" stroke="#1F4E5F" stroke-opacity=".3"/>
+  <text x="18" y="114" class="hs">Enrollment, credential lifecycle,</text>
+  <text x="18" y="130" class="hs">revocation, cryptography, the app</text>
+  <text x="18" y="156" class="hs" font-weight="600" fill="#1F4E5F">Measurable on launch day</text>
+  <text x="18" y="176" class="hs">Cards issued &middot; wallets installed &middot; roots live</text>
+  <rect x="420" y="34" width="440" height="164" fill="#FFFFFF" stroke="#B4472E" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="438" y="60" class="hl" fill="#B4472E">ACCEPTANCE</text>
+  <text x="438" y="82" class="hb" fill="#16181D">Somebody else controls it</text>
+  <line x1="438" y1="94" x2="842" y2="94" stroke="#B4472E" stroke-opacity=".3"/>
+  <text x="438" y="114" class="hs">Verifier integration cost, verifier liability,</text>
+  <text x="438" y="130" class="hs">whether refusing the credential is still allowed</text>
+  <text x="438" y="156" class="hs" font-weight="600" fill="#B4472E">Decides whether the system exists</text>
+  <text x="438" y="176" class="hs">Rarely funded &middot; rarely scoped &middot; rarely anyone&rsquo;s deliverable</text>
+  <path d="M336 116 L414 116" stroke="#16181D" stroke-width="1.2" marker-end="url(#ar)"/>
+  <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 z" fill="#16181D"/></marker></defs>
+  <text x="375" y="106" class="hm" text-anchor="middle">the gap</text>
+  <line x1="0" y1="222" x2="860" y2="222" stroke="#DEDED7"/>
+  <text x="0" y="244" class="hs">Almost every program in the record built the left box well and assumed the right box would follow.</text>
+  <text x="0" y="260" class="hs">The exceptions did not solve the right box either. They found somebody who already had a reason to verify.</text>
+</svg>
+</div>
+<figcaption>An identity program is scored on the half it controls. Adoption is decided by the half it does not. That asymmetry is not a management failure. It is what happens when the deliverable and the outcome belong to different parties, and it explains more of the record than any argument about cryptography, architecture or privacy design.</figcaption>
+</figure>
+
+<p class="snapshot">This began as a talk. In October 2025 I stood up at the <a href="https://www.techbuzznews.com/utahs-sedi-conference-charts-a-path-for-state-endorsed-digital-identity/">State-Endorsed Digital Identity Summit</a> at Utah Valley University and opened with a photograph of an Old Babylonian field-sale tablet impressed with a cylinder seal, to make the point that the question is old even where the technology is not. The same tablet opens section 1 below. I also told that room that seven in ten digital identity programs fail. Building the record put it at better than half, and the reason I had the wrong number is that failures get written up and quiet abandonments do not.</p>
+
+<p class="snapshot">Written up through August 2026. Figures, program statuses and regulatory timelines describe the position as of that date, and several systems discussed carry future effective dates. Treat it as a snapshot of a record and where it was heading, not a current-state reference.</p>
+
+<p>Of the twenty-eight programs in section 11 where I could identify an outcome, nineteen worked. I would not read much into that. I could only tag programs somebody had written about. Pilots that died quietly left nothing to tag.</p>
+
+<p>What is less arguable is the shape of the failures. Read thirty years of post-mortems and the striking thing is not that they are numerous. It is that the cryptography was almost always fine. Germany built a technically sound card, put the function on ninety-seven per cent of cards by administrative decree, and got twenty-two per cent usage.<sup><a href="#r7">7</a></sup> The United Kingdom spent &pound;233.3 million on a certified federation of commercial identity providers and shut it down.<sup><a href="#r5">5</a></sup> Microsoft designed InfoCard around principles that were, and remain, architecturally correct, and it died of developer friction. The European Union created legal status for electronic signatures in 1999 without creating the interoperability that would make them useful, then spent two decades discovering that legal status and utility are different things.</p>
+
+<p>The conventional reading is that identity is a governance problem rather than a technology problem. That is true and too vague to act on. Governance is a category, not a diagnosis, and a category cannot tell an architect which of two designs to build or a minister which of two programs to fund.</p>
+
+<p>This post proposes something narrower. There is a specific structural asymmetry that generates most of the record, and it is in the diagram above. An identity system has an issuance half and an acceptance half. The issuer controls, funds, staffs and is measured on the first. The second is where adoption is decided, and it sits with verifiers (banks, agencies, airlines, employers, merchants) whom the issuer usually cannot compel and rarely compensates. Programs optimize the half they own. The half that decides gets a paragraph in the business case.</p>
+
+<p>Follow that asymmetry and several things fall out. It explains why anchor tenants predict outcomes better than any technical variable, being verifiers who arrived with an independent reason to verify. It explains why regulatory liability determines architecture rather than merely constraining it. And it explains slow failure, because the same asymmetry runs forward in time. Launch is scored, operation is not.</p>
+
+<blockquote><p>Identity systems are not usually built badly. They are usually built entirely, on the side of the transaction that does not decide the outcome.</p></blockquote>
+
+<div class="thesis">
+<h2>The argument in five claims</h2>
+<ol>
+<li><span class="tn">1</span><span class="tc"><b>Acceptance decides, and it is nobody's job.</b> An issuer can plan, fund and report on issuance. Acceptance belongs to verifiers with their own budgets, regulators and backlogs, so the half that determines the outcome is never anybody's deliverable. A state can compel it, and that is not an exception to this claim but a payment plan: Germany bought a coverage number that means nothing, Japan bought real acceptance and found the operating model underneath had never been tested. The first demand nobody has to manufacture may be arriving now, from agents that cannot act for a person without it.</span><span class="tw"><a href="#s12">&sect;12</a> &middot; <a href="#s20">&sect;20</a> &middot; <a href="#s21">&sect;21</a></span></li>
+<li><span class="tn">2</span><span class="tc"><b>The mathematics was never the problem.</b> In this sample, I did not identify one program that failed because the cryptography was weak. The failures I could identify were failures of incentives, coordination and politics, which means improving the technical layer cannot rescue a structurally doomed program, and arguing about it is a way of working on the tractable half.</span><span class="tw"><a href="#s10">&sect;10</a> &middot; <a href="#s11">&sect;11</a></span></li>
+<li><span class="tn">3</span><span class="tc"><b>Residual responsibility sets the value ceiling.</b> In security engineering, to trust something is to be vulnerable to it, and regulators price that correctly even when vendors do not. A certified verification service can now perform the identity-verification component of a bank's customer due diligence, but the bank remains responsible for the adequacy of the overall determination, so the economic question is how much duplicated work the applicable rules and its own risk model let it stop doing. Above the floor a credential removes real work; near it, the residual responsibility caps what any credential can remove, and the use cases where holder-controlled designs promise most are the ones where that residue is largest.</span><span class="tw"><a href="#s13">&sect;13</a> &middot; <a href="#s14">&sect;14</a></span></li>
+<li><span class="tn">4</span><span class="tc"><b>Launch is the start of the bill.</b> Without a funded operating model, on the order of a tenth of build cost every year, a working system decays into one that runs without delivering. One lapsed supplier certificate kept a working national login off its trust-framework register for nine months. And the choices made in the first eighteen months, identifier, binding, revocation and algorithm agility, harden into decisions nobody can reach from inside.</span><span class="tw"><a href="#s15">&sect;15</a> &middot; <a href="#s16">&sect;16</a> &middot; <a href="#s18">&sect;18</a></span></li>
+<li><span class="tn">5</span><span class="tc"><b>Change what gets counted, or nothing else changes.</b> A program scored on credentials issued will optimize credentials issued. Scored on transactions completed at a verifier under no obligation to participate, it has to solve the deciding half, because nothing else moves the number. This is the one recommendation here that the record cannot verify, because no program in it ever made the switch.</span><span class="tw"><a href="#s19">&sect;19</a> &middot; <a href="#s22">&sect;22</a></span></li>
+</ol>
+</div>
+
+<p>If you take one thing away, take two questions. Would some verifier still need to solve this problem if the program did not exist? And has anyone costed the years after launch? Two questions against eleven failure modes is a shortcut rather than a substitute, and a proposal can pass both and still be dead on a liability rule it cannot reach. But the asymmetry holds; passing them proves nothing, and failing both is close to decisive. Most of the money in this record was spent by programs that failed both. The first question gets defended against the obvious objection later, and the pair becomes twenty you can put to a real proposal.</p>
+
+<div class="toc">
+<h2>Contents</h2>
+<ol>
+  <li class="part">Part I &middot; What Actually Happened</li>
+  <li><span class="num">1</span><a href="#s1">What Changed, and What Didn't</a></li>
+  <li><span class="num">2</span><a href="#s2">The PKI Era, and Building the Wrong Half Well</a></li>
+  <li><span class="num">3</span><a href="#s3">Federation, and the Trade Nobody Wanted to Make</a></li>
+  <li><span class="num">4</span><a href="#s4">When Platforms Became Infrastructure</a></li>
+  <li><span class="num">5</span><a href="#s5">The Institutional-Trust Models</a></li>
+  <li><span class="num">6</span><a href="#s6">The Bureaucratic Decade</a></li>
+  <li><span class="num">7</span><a href="#s7">Decentralisation Meets a Constraint It Cannot Argue With</a></li>
+  <li><span class="num">8</span><a href="#s8">Assurance Levels and the Convergence Decade</a></li>
+  <li class="part">Part II &middot; Why It Keeps Happening</li>
+  <li><span class="num">9</span><a href="#s9">The Lifecycle Nobody Designs For</a></li>
+  
+  <li><span class="num">10</span><a href="#s10">Eleven Ways an Identity System Fails</a></li>
+  <li><span class="num">11</span><a href="#s11">The Record</a></li>
+  <li><span class="num">12</span><a href="#s12">Issuance Is Scored. Acceptance Decides.</a></li>
+  <li><span class="num">13</span><a href="#s13">The Liability Floor</a></li>
+  <li><span class="num">14</span><a href="#s14">Where Decentralisation Actually Works</a></li>
+  <li class="part">Part III &middot; Over Time</li>
+  <li><span class="num">15</span><a href="#s15">The Failure That Doesn't Look Like One</a></li>
+  <li><span class="num">16</span><a href="#s16">Governance Is an Operating Cost</a></li>
+  <li><span class="num">17</span><a href="#s17">Standards Do Not Converge By Themselves</a></li>
+  <li><span class="num">18</span><a href="#s18">The Lock-In Paradox</a></li>
+  <li class="part">Part IV &middot; Applying It</li>
+  <li><span class="num">19</span><a href="#s19">Reading a Proposal</a></li>
+  <li><span class="num">20</span><a href="#s20">Europe Is Running the Same Sequence Twice</a></li>
+  <li><span class="num">21</span><a href="#s21">The Delegate That Cannot Be Handed a Piece of Paper</a></li>
+  <li><span class="num">22</span><a href="#s22">What the Record Is Actually Telling Us</a></li>
+  <li class="part">&nbsp;</li>
+  <li><a href="#limits">What this post does not establish</a></li>
+  <li><a href="#sources">Sources</a></li>
+  <li><a href="#quiz">&check; Check your understanding</a></li>
+</ol>
+</div>
